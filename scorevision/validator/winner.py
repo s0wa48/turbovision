@@ -14,7 +14,7 @@ from scorevision.utils.prometheus import (
     VALIDATOR_WINNER_SCORE,
 )
 from scorevision.utils.settings import get_settings
-from scorevision.validator.models import MinerMeta
+from scorevision.validator.models import OpenSourceMinerMeta
 from scorevision.validator.payload import (
     build_winner_meta,
     extract_challenge_id,
@@ -46,7 +46,7 @@ async def get_local_fallback_winner_for_element(
     fallback_uid = settings.VALIDATOR_FALLBACK_UID
     sums: dict[int, float] = {}
     cnt: dict[int, int] = {}
-    miner_meta_by_hk: dict[str, MinerMeta] = {}
+    miner_meta_by_hk: dict[str, OpenSourceMinerMeta] = {}
 
     async for line in dataset_sv(tail):
         try:
@@ -197,7 +197,7 @@ async def get_winner_for_element(
 
     sums_by_validator_miner: dict[tuple[str, int], float] = {}
     cnt_by_validator_miner: dict[tuple[str, int], int] = {}
-    miner_meta_by_hk: dict[str, MinerMeta] = {}
+    miner_meta_by_hk: dict[str, OpenSourceMinerMeta] = {}
 
     async for line in dataset_sv_multi(tail, validator_indexes, element_id=element_id):
         try:
